@@ -702,6 +702,13 @@ Contributions are welcome! To contribute:
 5. Feel free to open an issue for any bug reports or feature requests.
 
 
+The tool is under active development.
+
+Known issues:
+
+***XLS export functionality is incomplete.
+***Some data may not fully export or display correctly.
+
 
 ## License
 This project is licensed under the MIT License.
