@@ -1,0 +1,464 @@
+ZAJTPNCSO02#sh run
+Building configuration...
+
+Current configuration : 13010 bytes
+!
+! Last configuration change at 10:24:25 UTC Wed May 14 2025 by DHLAdmin
+! NVRAM config last updated at 10:25:06 UTC Wed May 14 2025 by DHLAdmin
+!
+version 17.12
+service timestamps debug datetime msec
+service timestamps log datetime msec
+service password-encryption
+platform punt-keepalive disable-kernel-core
+!
+hostname ZAJTPNCSO02
+!
+!
+vrf definition Mgmt-vrf
+ !
+ address-family ipv4
+ exit-address-family
+ !
+ address-family ipv6
+ exit-address-family
+!
+aaa new-model
+!
+!
+aaa authentication login default local
+aaa authentication enable default enable
+!
+!
+aaa session-id common
+!
+!
+!
+switch 1 provision c9200l-24p-4x
+!
+!
+!
+!
+!
+ip name-server 165.72.12.88 165.72.136.88
+ip domain name DHL.com
+!
+!
+!
+login on-success log
+vtp mode transparent
+vtp version 2
+!
+!
+!
+!
+!
+!
+crypto pki trustpoint SLA-TrustPoint
+ enrollment pkcs12
+ revocation-check crl
+ hash sha256
+!
+crypto pki trustpoint TP-self-signed-2134067719
+ enrollment selfsigned
+ subject-name cn=IOS-Self-Signed-Certificate-2134067719
+ revocation-check none
+ rsakeypair TP-self-signed-2134067719
+ hash sha256
+!
+!
+crypto pki certificate chain SLA-TrustPoint
+ certificate ca 01
+  30820321 30820209 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030
+  32310E30 0C060355 040A1305 43697363 6F312030 1E060355 04031317 43697363
+  6F204C69 63656E73 696E6720 526F6F74 20434130 1E170D31 33303533 30313934
+  3834375A 170D3338 30353330 31393438 34375A30 32310E30 0C060355 040A1305
+  43697363 6F312030 1E060355 04031317 43697363 6F204C69 63656E73 696E6720
+  526F6F74 20434130 82012230 0D06092A 864886F7 0D010101 05000382 010F0030
+  82010A02 82010100 A6BCBD96 131E05F7 145EA72C 2CD686E6 17222EA1 F1EFF64D
+  CBB4C798 212AA147 C655D8D7 9471380D 8711441E 1AAF071A 9CAE6388 8A38E520
+  1C394D78 462EF239 C659F715 B98C0A59 5BBB5CBD 0CFEBEA3 700A8BF7 D8F256EE
+  4AA4E80D DB6FD1C9 60B1FD18 FFC69C96 6FA68957 A2617DE7 104FDC5F EA2956AC
+  7390A3EB 2B5436AD C847A2C5 DAB553EB 69A9A535 58E9F3E3 C0BD23CF 58BD7188
+  68E69491 20F320E7 948E71D7 AE3BCC84 F10684C7 4BC8E00F 539BA42B 42C68BB7
+  C7479096 B4CB2D62 EA2F505D C7B062A4 6811D95B E8250FC4 5D5D5FB8 8F27D191
+  C55F0D76 61F9A4CD 3D992327 A8BB03BD 4E6D7069 7CBADF8B DF5F4368 95135E44
+  DFC7C6CF 04DD7FD1 02030100 01A34230 40300E06 03551D0F 0101FF04 04030201
+  06300F06 03551D13 0101FF04 05300301 01FF301D 0603551D 0E041604 1449DC85
+  4B3D31E5 1B3E6A17 606AF333 3D3B4C73 E8300D06 092A8648 86F70D01 010B0500
+  03820101 00507F24 D3932A66 86025D9F E838AE5C 6D4DF6B0 49631C78 240DA905
+  604EDCDE FF4FED2B 77FC460E CD636FDB DD44681E 3A5673AB 9093D3B1 6C9E3D8B
+  D98987BF E40CBD9E 1AECA0C2 2189BB5C 8FA85686 CD98B646 5575B146 8DFC66A8
+  467A3DF4 4D565700 6ADF0F0D CF835015 3C04FF7C 21E878AC 11BA9CD2 55A9232C
+  7CA7B7E6 C1AF74F6 152E99B7 B1FCF9BB E973DE7F 5BDDEB86 C71E3B49 1765308B
+  5FB0DA06 B92AFE7F 494E8A9E 07B85737 F3A58BE1 1A48A229 C37C1E69 39F08678
+  80DDCD16 D6BACECA EEBC7CF9 8428787B 35202CDC 60E4616A B623CDBD 230E3AFB
+  418616A9 4093E049 4D10AB75 27E86F73 932E35B5 8862FDAE 0275156F 719BB2F0
+  D697DF7F 28
+        quit
+crypto pki certificate chain TP-self-signed-2134067719
+ certificate self-signed 01
+  30820330 30820218 A0030201 02020101 300D0609 2A864886 F70D0101 0B050030
+  31312F30 2D060355 04030C26 494F532D 53656C66 2D536967 6E65642D 43657274
+  69666963 6174652D 32313334 30363737 3139301E 170D3235 30333033 30373533
+  31315A17 0D333530 33303330 37353331 315A3031 312F302D 06035504 030C2649
+  4F532D53 656C662D 5369676E 65642D43 65727469 66696361 74652D32 31333430
+  36373731 39308201 22300D06 092A8648 86F70D01 01010500 0382010F 00308201
+  0A028201 01008916 FA62FB9D 859FCAB7 D2719E2F CF7BFBFC 8834C000 316F5453
+  DBE49990 E0B98EE0 8A704D6B 497A4A3A 1222715F 87279ACC 2580EEF5 7F8A6AB3
+  B4A54792 7A4974A8 73833E79 C367013C E4FB1DA9 A2605996 B12B857D 46B3FD52
+  8080CD1E 6784DD4A A0CC7A27 CD3AEF5D 6C770F67 088570C9 12DADE7F A865B7B5
+  A9684533 4438DD15 5B554120 C84CDB03 20EADBFE 592F122F 751FFB3A FD02856A
+  6FEDB924 60FFD17C 013D7D9E A51E8D2A 5CEF0B33 FFA4BD1B DCAF481F DD27158A
+  844102C7 3A46A555 2D96DDE6 5488F50E E32939CC C277D158 285D06AF CF5C4767
+  261CF4E8 CEC4C948 51FC0A38 463DD87E 78B2DCC8 E839BE6F 6361BB5D 29E65BCD
+  B1E2BD3F D51D0203 010001A3 53305130 1D060355 1D0E0416 04143E97 5FD6BD1E
+  6BB380B4 D5D8FB62 4A593BB4 2D7C301F 0603551D 23041830 1680143E 975FD6BD
+  1E6BB380 B4D5D8FB 624A593B B42D7C30 0F060355 1D130101 FF040530 030101FF
+  300D0609 2A864886 F70D0101 0B050003 82010100 70C1A296 0704CA5A 0CFC42AF
+  639CB7F2 7F88F9A4 EC550810 510FA798 03D445E6 79369FC8 65579EB6 40130210
+  B462E3FF DB7D405D A2D013E3 A3CF160D 28437FBD EDE6395A E2CBCC06 5F6A0EC5
+  EB83C73F 457F18CE 3826A3D3 EEA1E819 A6D8AAB5 8173A130 6C772307 0372E5EE
+  AE8C1218 AB4A9264 AD64804B 06DA310F 5B86AD80 3B874310 A5BE9192 F1D89B4D
+  9623F1C3 D6C7294F 12C8F325 A1523AC6 F65A1E81 EF74EFCC A2ABA808 2F448D1A
+  D6A3A221 C0D05208 222C6400 DDD7106D A3A093E5 1CB1AB19 BCD10146 E7F31FF9
+  9B5CCD63 8231C23B A6A56DF7 B79FCA14 55403A05 2784C79A AF723F6F C79E01AB
+  543AF990 19D92886 94B4B0C5 B99AA7F2 D5E5BFCB
+        quit
+!
+license boot level network-essentials addon dna-essentials
+memory free low-watermark processor 8237
+!
+diagnostic bootup level minimal
+!
+spanning-tree mode rapid-pvst
+spanning-tree extend system-id
+!
+!
+!
+enable secret 9 $9$DGJfHPrqaS16tE$JgWSfk9S47r0I24pff2OltuQBcg3/..KzpzzuHY6wzA
+!
+username DHLAdmin privilege 15 secret 9 $9$SjP42qgvJJWCT.$TRUoEEtquLAfWfHF6OkgxfYp1jFFtYDUY40H7fpJ8sQ
+username dhl-admin privilege 15 secret 9 $9$MGQPS/.kfpraEk$SqlHR2Q8m4o41Nw7zVAOhp24p9xsYFXI0EM.5WROLt.
+username DHL_Support secret 9 $9$IEvAM5TZ0ZgJiU$.FfkIBuL4B5ho41NNytH/KTx1qZtj8V/II/cP2V4SZQ
+!
+redundancy
+ mode sso
+crypto engine compliance shield disable
+!
+!
+!
+!
+!
+transceiver type all
+ monitoring
+!
+vlan 2
+ name LAN_Management
+!
+vlan 3
+ name WAN
+!
+vlan 11
+ name DATA
+!
+vlan 70
+ name NEXIO_MGMNT
+!
+vlan 80
+ name BYOD
+!
+vlan 90
+ name Guestnet
+!
+vlan 200
+ name Wireless_Management
+!
+vlan 201
+ name Warehouse
+!
+vlan 202
+ name CorpWLAN
+!
+!
+class-map match-any system-cpp-police-ewlc-control
+  description EWLC Control
+class-map match-any system-cpp-police-topology-control
+  description Topology control
+class-map match-any system-cpp-police-sw-forward
+  description Sw forwarding, L2 LVX data packets, LOGGING, Transit Traffic
+class-map match-any system-cpp-default
+  description EWLC data, Inter FED Traffic
+class-map match-any system-cpp-police-sys-data
+  description Openflow, Exception, EGR Exception, NFL Sampled Data, RPF Failed
+class-map match-any system-cpp-police-punt-webauth
+  description Punt Webauth
+class-map match-any system-cpp-police-l2lvx-control
+  description L2 LVX control packets
+class-map match-any system-cpp-police-forus
+  description Forus Address resolution and Forus traffic
+class-map match-any system-cpp-police-multicast-end-station
+  description MCAST END STATION
+class-map match-any system-cpp-police-high-rate-app
+  description High Rate Applications
+class-map match-any system-cpp-police-multicast
+  description MCAST Data
+class-map match-any system-cpp-police-l2-control
+  description L2 control
+class-map match-any system-cpp-police-dot1x-auth
+  description DOT1X Auth
+class-map match-any system-cpp-police-data
+  description ICMP redirect, ICMP_GEN and BROADCAST
+class-map match-any system-cpp-police-stackwise-virt-control
+  description Stackwise Virtual OOB
+class-map match-any non-client-nrt-class
+class-map match-any system-cpp-police-routing-control
+  description Routing control and Low Latency
+class-map match-any system-cpp-police-protocol-snooping
+  description Protocol snooping
+class-map match-any system-cpp-police-dhcp-snooping
+  description DHCP snooping
+class-map match-any system-cpp-police-ios-routing
+  description L2 control, Topology control, Routing control, Low Latency
+class-map match-any system-cpp-police-system-critical
+  description System Critical and Gold Pkt
+class-map match-any system-cpp-police-ios-feature
+  description ICMPGEN,BROADCAST,ICMP,L2LVXCntrl,ProtoSnoop,PuntWebauth,MCASTData,Transit,DOT1XAuth,Swfwd,LOGGING,L2LVXData,ForusTraffic,ForusARP,McastEndStn,Openflow,Exception,EGRExcption,NflSampled,RpfFailed
+!
+policy-map system-cpp-policy
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+!
+interface GigabitEthernet0/0
+ vrf forwarding Mgmt-vrf
+ no ip address
+!
+interface GigabitEthernet1/0/1
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/2
+ switchport mode trunk
+!
+interface GigabitEthernet1/0/3
+ description LINK TO WLC
+ switchport trunk native vlan 200
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/4
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/5
+ switchport access vlan 11
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/6
+ switchport access vlan 11
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/7
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/8
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/9
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/10
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/11
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/12
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/13
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/14
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/15
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/16
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/17
+ switchport access vlan 11
+ switchport trunk native vlan 200
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/18
+ switchport access vlan 11
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/19
+ switchport access vlan 200
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/20
+ switchport access vlan 200
+ switchport mode access
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/21
+ switchport trunk native vlan 200
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/22
+ switchport trunk native vlan 200
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/23
+ switchport trunk native vlan 200
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface GigabitEthernet1/0/24
+ description OFFICE AP
+ switchport trunk native vlan 200
+ switchport mode trunk
+ spanning-tree portfast
+ spanning-tree bpduguard enable
+!
+interface TenGigabitEthernet1/1/1
+ description UPLINK TO EMTO3-ZA-DSC-080-LC
+ switchport mode trunk
+!
+interface TenGigabitEthernet1/1/2
+!
+interface TenGigabitEthernet1/1/3
+!
+interface TenGigabitEthernet1/1/4
+!
+interface Vlan1
+ no ip address
+ shutdown
+!
+interface Vlan2
+ ip address 2.27.149.18 255.255.255.240
+!
+interface Vlan11
+ no ip address
+ ip helper-address 2.27.1.4
+ ip helper-address 165.72.128.251
+!
+interface Vlan70
+ ip address 41.24.217.66 255.255.255.240
+!
+interface Vlan201
+ no ip address
+ ip helper-address 2.27.1.4
+ ip helper-address 165.72.128.251
+!
+interface Vlan202
+ no ip address
+ ip helper-address 2.27.1.4
+ ip helper-address 165.72.128.251
+!
+ip default-gateway 2.27.149.17
+no ip http server
+no ip http secure-server
+ip http client source-interface Vlan2
+ip forward-protocol nd
+ip ssh bulk-mode 131072
+ip ssh time-out 60
+ip ssh source-interface Vlan2
+!
+ip access-list standard snmpv3_ro.acl
+ 10 permit 165.72.0.54
+ 20 permit 199.40.76.54
+ 30 permit 156.137.67.54
+!
+!
+!
+snmp-server group SCAN4DHL v3 priv read DHLRO
+snmp-server view DHLRO internet included
+snmp-server view DHLRO system included
+snmp-server view DHLRO interfaces included
+snmp-server view DHLRO chassis included
+!
+!
+!
+control-plane
+ service-policy input system-cpp-policy
+!
+!
+line con 0
+ stopbits 1
+line vty 0 4
+ transport input ssh
+line vty 5 15
+ transport input ssh
+!
+ntp server 199.40.248.66
+!
+!
+!
+!
+!
+!
+end
+
+ZAJTPNCSO02#
