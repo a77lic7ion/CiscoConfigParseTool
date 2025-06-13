@@ -1,0 +1,102 @@
+CiscoConfigParseTool
+
+A tool designed to parse and visually inspect Cisco switch/router configuration files via a browser-based GUI. Ideal for network engineers seeking quick insights into configuration structures.
+
+📦 Installation & Setup
+
+Follow the steps below to get the application running locally.
+
+### 1. Clone the Repository
+
+```bash
+git clone https://github.com/a77lic7ion/CiscoConfigParseTool.git
+cd CiscoConfigParseTool
+
+
+2. Create and Activate a Python Virtual Environment
+
+Depending on your preferred environment:
+Python (Standard)
+
+python -m venv venv
+# On Linux/macOS
+source venv/bin/activate
+# On Windows (CMD)
+venv\Scripts\activate.bat
+# On Windows (PowerShell)
+venv\Scripts\Activate.ps1
+
+Conda
+
+conda create -n ciscoenv python=3.11 -y
+conda activate ciscoenv
+
+3. Install Node.js Dependencies
+
+Run the following command to install frontend dependencies:
+
+npm install
+
+Or use the forced clean install (useful if you encounter errors):
+
+npm install --force
+
+4. Start the Development Server
+
+npm run dev
+
+You should see something like:
+
+VITE v6.3.5  ready in 354 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+
+5. Access the Application
+
+Open your browser and navigate to:
+
+http://localhost:5173/
+
+🔥 Firewall Configuration (Optional)
+
+If you're running a firewall and want external devices to access the local dev server:
+Windows
+Open Windows Defender Firewall with Advanced Security
+Go to Inbound Rules → New Rule
+Select Port, click Next
+Choose TCP, specify port 5173
+
+Allow the connection
+Name it (e.g., CiscoConfigParseTool) and save
+
+Linux (UFW)
+
+sudo ufw allow 5173/tcp
+
+macOS (Using pfctl or socketfilterfw)
+
+
+Manual configuration may be required using pf rules or socketfilterfw.
+
+
+🛠️ Developer Notes
+
+Fork this repository before making any changes or submitting pull requests.
+The tool is under active development.
+
+Known issues:
+
+XLS export functionality is incomplete.
+Some data may not fully export or display correctly.
+
+🙏 Contributions
+
+Contributions are welcome. Please fork the repo, make your changes, and submit a pull request.
+📃 License
+
+MIT License
+👨‍💻 Author
+
+@a77lic7ion
